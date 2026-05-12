@@ -3,7 +3,7 @@ version : 0.2
 env:
   variables:
     ECR_REPOSITORY: "coworking-ecr"
-    IMAGE_TAG: "build-$CODEBUILD_BUILD_NUMBER"
+    IMAGE_TAG: "build-${CODEBUILD_BUILD_NUMBER}"
 
 phases:
   pre_build:
