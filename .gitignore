@@ -5,6 +5,10 @@ env/
 .env
 .env.local
 .env.*.local
+.venv/
+__pycache__/
+*.pyc
+.env
 
 # IDE
 .vscode/
@@ -12,7 +16,7 @@ env/
 *.swp
 *.swo
 *~
-.DS_Store
+
 
 # Build & Dist
 build/
@@ -21,6 +25,7 @@ dist/
 __pycache__/
 *.pyc
 *.pyo
+*.whl, .Python, pip-wheel-metadata/
 
 # Logs
 logs/
