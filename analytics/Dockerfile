@@ -1,0 +1,21 @@
+FROM python:3.12-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+#create a directory for the application
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code
+COPY . /app/
+
+# Expose the port the app runs on
+EXPOSE 5153
+
+# Run the application
+CMD ["python", "app.py"]
