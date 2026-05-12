@@ -1,0 +1,26 @@
+version : 0.2
+
+env:
+  variables:
+    ECR_REPOSITORY: "coworking-ecr"
+    IMAGE_TAG: "build-$CODEBUILD_BUILD_NUMBER"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - cd analytics 
+      - ls -la
+  build:
+    commands:
+      - echo Starting the build process at $(date) 
+      - echo Building the Docker image...
+      - docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+      - echo Tagging the Docker image...
+      - docker tag $ECR_REPOSITORY:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Pushing the Docker image to Amazon ECR...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+      - echo Build completed at $(date) 
