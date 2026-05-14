@@ -20,4 +20,4 @@ deployment/configmap.yaml defines DB_NAME, DB_USERNAME, DB_HOST, and DB_PORT, wh
 
 ## Operations Notes
 
-DNS for the LoadBalancer can take a few minutes to propagate. Use kubectl get svc to find the external hostname, then curl the endpoints to verify the app.
+DNS for the LoadBalancer can take a few minutes to propagate. Use kubectl get svc to find the external hostname, then curl the endpoints to verify the app..
